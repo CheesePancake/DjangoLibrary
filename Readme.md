@@ -84,3 +84,77 @@ python manage.py startapp perpustakaan
 | Models.py | Menejemen ke database \/ database connector | 
 | Test.py | Untuk melakukan testing | 
 | views.py | Kumpulan fungsi-fungsi yang akan ditampilkan sebagai response maupun request | 
+
+agar project dapat mengakses apps perpustakaan install apps dengan cara meng-edit settings.py pada perpus dibagian "Installed Apps" seperti berikut :
+
+<img width="547" alt="image" src="https://user-images.githubusercontent.com/92983457/168120725-018d787b-20ff-4d38-be85-a3209bcf7345.png">
+
+## -- Membuat views 👀
+Edit file views.py seperti ini
+
+```py
+from django.shortcuts import render
+
+# Create your views here.
+from django.http import HttpResponse
+
+def buku(request):
+    return HttpResponse('Halaman buku')
+ ```
+ import fungsi buku dan panggil melalui urls.py seperti ini
+ ```py
+from django.contrib import admin
+from django.urls import path
+from perpustakaan.views import buku
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('buku/', buku),
+]
+```
+## -- Membuat template 📚
+Template digunakan untuk menyimpan file html yang akan ditampilkan ke browser
+
+ - [x] Edit settings.py dibagian TEMPLATES -> "dirs" pada list tambahkan "templates"
+
+<img width="504" alt="image" src="https://user-images.githubusercontent.com/92983457/168126491-71b051ca-1de7-4fde-baa2-aa65860f0566.png">
+
+- [x] Buat folder templates dan file buku.html
+
+<img width="685" alt="image" src="https://user-images.githubusercontent.com/92983457/168129875-dd2401ff-1057-42bc-ad79-c8b05b8c758e.png">
+
+- [x] Edit views.py
+
+<img width="272" alt="image" src="https://user-images.githubusercontent.com/92983457/168127455-fee467f7-ac27-4e68-8fb3-3bac8965da80.png">
+
+### Template language
+
+template language dibagi menjadi 3 yaitu 
+- Subtitusi variabel untuk menampilkan variabel ke template yang berasal dari view
+<img width="327" alt="image" src="https://user-images.githubusercontent.com/92983457/168132563-5537ca45-9007-4386-8892-7700e3986ccd.png">
+<img width="193" alt="image" src="https://user-images.githubusercontent.com/92983457/168132725-d16dce0a-ce6f-4acb-8907-1e77a3d3caf0.png">
+
+- Filter untuk memodifikasi variabel yang akan ditampilkan
+<img width="199" alt="image" src="https://user-images.githubusercontent.com/92983457/168133451-c2ebe3fa-c9cb-44c5-95ea-e8bb90f463f8.png">
+<img width="119" alt="image" src="https://user-images.githubusercontent.com/92983457/168133571-279e708a-e86a-4f4e-a51e-5507f75b341f.png">
+
+- Tags untuk melakukan logic pemrograman
+<img width="315" alt="image" src="https://user-images.githubusercontent.com/92983457/168135873-49154b8b-44b2-4990-9068-4406956536ab.png">
+<img width="317" alt="image" src="https://user-images.githubusercontent.com/92983457/168136125-75cdf1fa-3e3d-41a0-b2a3-53ec1f4ebe3a.png">
+<img width="170" alt="image" src="https://user-images.githubusercontent.com/92983457/168136269-252934a3-249d-48a7-93dc-65feb5cadae8.png">
+
+### Template Extending
+
+> beberapa perubahan pada file struktur
+<img width="193" alt="image" src="https://user-images.githubusercontent.com/92983457/168142702-da3e0f90-6d13-45dc-8996-6b9c39f952d9.png">
+
+> buku.html extend base.html sehingga buku.html tidak perlu menuliskan code secara lengkap
+<img width="311" alt="image" src="https://user-images.githubusercontent.com/92983457/168143101-c3aa0e2a-4088-4f7d-9cff-91240d421190.png">
+
+> Header file berada pada base.html
+<img width="503" alt="image" src="https://user-images.githubusercontent.com/92983457/168143402-04837cc6-566b-4065-9921-89931bd16f6c.png">
+
+## -- Static file 📄
+
+
+
